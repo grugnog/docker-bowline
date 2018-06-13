@@ -12,7 +12,7 @@ RUN yum -y install php php-gd php-pdo_mysql php-xml php-soap php-mbstring php-pe
     yum clean all
 
 # Install apache
-RUN yum -y install httpd mod_ssl && yum clean all
+RUN yum --disablerepo=epel -y update ca-certificates && yum install httpd mod_ssl && yum clean all
 
 # Apache config.
 RUN sed -i 's,/var/www/html,/var/www/docroot,' /etc/httpd/conf/httpd.conf
